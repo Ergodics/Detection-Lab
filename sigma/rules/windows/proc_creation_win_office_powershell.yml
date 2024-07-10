@@ -1,0 +1,26 @@
+title: PowerShell Spawned By Office Applications
+id: 7222f89d-4b8a-4728-af67-5cf48b47aabc
+status: experimental
+description: Detects when a PowerShell process is spawned by a set of Microsoft Office applications.
+author: Ergodics
+date: 2024/07/09
+logsource:
+  category: process_creation
+  product: windows
+tags:
+  - powershell
+  - attack.t1059.001 # PowerShell
+
+detection:
+  selection:
+    ParentImage|endswith:
+      - '\winword.exe'
+      - '\EXCEL.exe'
+      - '\msaccess.exe'
+    Image|endswith: '\powershell.exe'
+  condition: selection
+
+falsepositives:
+  - Legitimate use of PowerShell by Microsoft Office.
+
+level: high
