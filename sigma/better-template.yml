@@ -1,0 +1,65 @@
+# Convert to other formats at https://uncoder.io or using 
+
+title: # Rule Title. Don't prefix with "Detects" or "Rule".
+
+# Universally Unique Identifier (UUID) Generate one from https://www.uuidgenerator.net
+id: a1b2c3d4-5678-90ab-cdef-1234567890ab
+
+# experimental: New and not yet verified
+# testing: Under testing
+# stable: Verified and stable
+# deprecated: No longer recommended for use
+status: experimental
+
+description: # Details about the detection intensions of the rule.
+author: # Who wrote the rule.
+date: # When was the rule written. YYYY/MM/DD or YYYY-MM-DD
+modified: # When was it updated.
+logsource:
+  category: process_creation # Classification of the log data for detection
+  product: windows # Source of the log data
+detection:
+  selection:
+    FieldName1: Value # Search identifiers for the detection
+    FieldName2: Value
+    EventID: 4104
+    CommandLine|contains:
+      # Field Lists implicitly use OR, checking for any of the values
+      - "-NoProfile" # or...
+      - "-ExecutionPolicy Bypass"
+
+  # Condition Examples
+  # selection: The specified selection criteria must be met
+  # selection1 and selection2: Both selection criteria must be met
+  # selection1 or selection2: Either selection criteria can be met
+  # not selection1: The criteria must not be met
+  condition: selection # Action to be taken.
+fields: # List of associated fields that are important for the detection
+
+falsepositives: # Any possible false positives that could trigger the rule.
+  - List possible legitimate activity.
+
+# informational
+# low
+# medium
+# high
+# critical
+level: medium # Severity level of the detection rule ()
+
+# https://github.com/SigmaHQ/sigma-specification/blob/main/Tags_specification.md
+tags: # Associated TTPs from MITRE ATT&CK
+  # MITRE ATT&CK framework references
+  - attack.discovery
+  - attack.t1012
+
+  # MITRE Cyber Analytics Repository (CAR)
+  - car.2016-04-005
+  - car-2016-04-005
+
+  # Traffic Light Protocol
+  - tlp.amber
+  - tlp.green
+
+  # CVE
+  - cve.2022.27925 # OR
+  - cve-2022-27925
