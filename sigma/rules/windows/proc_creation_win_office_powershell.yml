@@ -8,7 +8,6 @@ logsource:
   category: process_creation
   product: windows
 tags:
-  - powershell
   - attack.t1059.001 # PowerShell
 
 detection:
