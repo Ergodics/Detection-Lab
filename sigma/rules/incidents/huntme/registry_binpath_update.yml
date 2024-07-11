@@ -1,0 +1,25 @@
+title: Change to registry binPath
+id: 4f7dc1b0-085d-48d9-abc8-52516954dce7
+status: experimental
+description: Registry binPath of service updated.
+date: 2024-07-11
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\sc.exe'
+    CommandLine|contains|all:
+      - 'sc.exe'
+      - 'config'
+      - 'binPath'
+    EventID:
+      - 1
+  condition: selection
+falsepositives:
+  - Legitimate administrative update of service binPath in registry.
+level: high
+tags:
+    - attack.privilege_escalation
+    - attack.t1548

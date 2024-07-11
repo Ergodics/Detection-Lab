@@ -1,0 +1,26 @@
+title: 7Zip Archiving System
+id: 6fa15fdf-5790-4311-a3c0-178fcca353fa
+status: experimental
+description: 7Zip used to archive entire filesystem.
+date: 2024-07-11
+logsource:
+  category: registry_event
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\7z.exe'
+    CommandLine|contains|all:
+      - '7z'
+      - ' a '
+      - '*'
+      - '-p' # Needed to add this for the challenge but not ideal, what if they set no password?
+    EventID:
+      - 1
+  condition: selection
+falsepositives:
+  - Legitimate mass backup or archiving using 7Zip.
+level: high
+tags:
+  - attack.exfiltration
+  - attack.t1560

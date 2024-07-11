@@ -1,0 +1,27 @@
+title: Certutil External File Download
+id: b75f4c23-5a74-48df-bb06-6caaff94c366
+status: testing
+description: Abuse of trusted utility certutil.exe to download external files.
+author: Ergodics
+date: 2024-07-11
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|contains: 'certutil.exe'
+    CommandLine|contains|all:
+        - '-urlcache'
+        - '-split'
+        - '-f'
+    EventID:
+        - 1
+  condition: selection
+falsepositives:
+  - Legitimate administrative usage for downloading files.
+level: high
+tags:
+  - attack.execution
+  - attack.defense_evasion
+  - attack.command_and_control
+  - attack.t1105

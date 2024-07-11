@@ -1,0 +1,29 @@
+title: Netcat Reverse Shell Opened
+id: 4f7dc1b0-085d-48d9-abc8-52516954dce7
+status: experimental
+description: Netcat used to open reverse shell on system.
+date: 2024-07-11
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  ncat_exe:
+    Image|endswith:
+      - '\nc.exe'
+      - '\ncat.exe'
+      - '\netcat.exe'
+    CommandLine|contains:
+      - ' -e '
+      - 'cmd.exe'
+    EventID:
+      - 1
+  md5_hash:
+    Hashes|contains:
+      - '523613A7B9DFA398CBD5EBD2DD0F4F38'
+  condition: ncat_exe or md5_hash
+falsepositives:
+  - Legitimate administrative usage of Netcat.
+level: high
+tags:
+    - attack.command_and_control
+    - attack.t1095

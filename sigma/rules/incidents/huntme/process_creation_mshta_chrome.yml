@@ -1,0 +1,26 @@
+title: MSHTA Opened By Chrome
+id: b96b4110-360e-4f29-bb2d-0b203d2f5ad7
+status: testing
+description: MSHTA opened by Chrome indicating abuse of trusted Windows utility.
+author: Ergodics
+date: 2024-07-11
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentImage|contains: 'chrome.exe'
+    Image|contains: 'mshta.exe'
+    CommandLine|contains:
+        - 'mshta.exe'
+    EventID:
+        - 1
+  condition: selection
+
+falsepositives:
+    - Legitimate use of MSHTA by chrome
+
+level: medium
+tags:
+  - attack.defense_evasion
+  - attack.t1218.005

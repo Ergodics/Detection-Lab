@@ -1,0 +1,25 @@
+title: Change to RunOnce Registry Key
+id: 6fa15fdf-5790-4311-a3c0-178fcca353fa
+status: experimental
+description: RunOnce registry key updated to execute a binary on next bootup.
+date: 2024-07-11
+logsource:
+  category: registry_event
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\reg.exe'
+    CommandLine|contains|all:
+      - 'reg'
+      - ' add '
+      - 'RunOnce'
+    EventID:
+      - 1
+  condition: selection
+falsepositives:
+  - Legitimate addition to RunOnce.
+level: high
+tags:
+  - attack.persistence
+  - attack.t1547.001

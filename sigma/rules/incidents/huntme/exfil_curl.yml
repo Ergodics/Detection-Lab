@@ -1,0 +1,25 @@
+title: Data Exfiltration via cURL
+id: 6fa15fdf-5790-4311-a3c0-178fcca353fa
+status: experimental
+description: cURL used to send data to an external server.
+date: 2024-07-11
+logsource:
+  category: procesd_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\curl.exe'
+    CommandLine|contains|all:
+      - 'curl'
+      - ' -d '
+      - 'http'
+    EventID:
+      - 1
+  condition: selection
+falsepositives:
+  - Legitimate use of cURL to send data to an external server.
+level: medium
+tags:
+  - attack.exfiltration
+  - attack.t1560

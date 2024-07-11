@@ -1,0 +1,26 @@
+title: PowerShell Privilege Escalation
+id: 4f7dc1b0-085d-48d9-abc8-52516954dce7
+status: experimental
+description: PowerShell used to escalate privileges on Windows system.
+date: 2024-07-11
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - '\powershell.exe'
+    CommandLine|contains:
+      - 'iex'
+      - 'downloadstring'
+      - 'PowerUp.ps1'
+      - 'Invoke-AllChecks'
+    EventID:
+      - 1
+  condition: selection
+falsepositives:
+  - Legitimate administrative usage of PowerShell to download and execute scripts.
+level: high
+tags:
+    - attack.privilege_escalation
+    - attack.t1548

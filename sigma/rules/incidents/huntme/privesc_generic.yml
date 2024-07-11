@@ -1,0 +1,30 @@
+title: Common Privilege Escalation Techniques
+id: af7294f2-dcd1-4f31-b727-b95b7cb839a0
+status: experimental
+description: Detects the use of common tools and commands associated with privilege escalation attempts
+references:
+  - https://attack.mitre.org/tactics/TA0004/
+author: Ergodics
+date: 2024-11-07
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - 'mimikatz.exe'
+      - 'procdump.exe'
+      - 'winPEAS.exe'
+      - 'seatbelt.exe'
+      - 'powershell.exe'
+    CommandLine|contains:
+      - 'Get-ProcessToken'
+      - 'Invoke-Mimikatz'
+  condition: selection
+falsepositives:
+  - Legitimate use by administrators or security team.
+level: high
+tags:
+  - attack.privilege_escalation
+  - attack.t1068
+  - attack.t1078

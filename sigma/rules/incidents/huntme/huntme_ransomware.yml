@@ -1,0 +1,20 @@
+title: HUNTME Ransomware
+id: 6fa15fdf-5790-4311-a3c0-178fcca353fa
+status: experimental
+description: Possible creation of HUNTME Ransomware file.
+date: 2024-07-11
+logsource:
+  category: file_system
+  product: windows
+detection:
+  selection:
+    TargetFilename|contains:
+      - 'huntme'
+    EventID:
+      - 11
+  condition: selection
+falsepositives:
+  - Legitimate filenames containing the string 'huntme'.
+level: high
+tags:
+  - attack.t1486
