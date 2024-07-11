@@ -1,8 +1,8 @@
 title: Certutil External File Download
+author: Ergodics
 id: b75f4c23-5a74-48df-bb06-6caaff94c366
 status: testing
 description: Abuse of trusted utility certutil.exe to download external files.
-author: Ergodics
 date: 2024-07-11
 logsource:
   category: process_creation

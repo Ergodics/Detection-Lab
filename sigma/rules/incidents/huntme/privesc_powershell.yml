@@ -1,4 +1,5 @@
 title: PowerShell Privilege Escalation
+author: Ergodics
 id: 4f7dc1b0-085d-48d9-abc8-52516954dce7
 status: experimental
 description: PowerShell used to escalate privileges on Windows system.

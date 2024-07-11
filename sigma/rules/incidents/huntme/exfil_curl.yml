@@ -1,4 +1,5 @@
 title: Data Exfiltration via cURL
+author: Ergodics
 id: 6fa15fdf-5790-4311-a3c0-178fcca353fa
 status: experimental
 description: cURL used to send data to an external server.
