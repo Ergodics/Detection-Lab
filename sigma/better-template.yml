@@ -11,7 +11,7 @@ id: a1b2c3d4-5678-90ab-cdef-1234567890ab
 # deprecated: No longer recommended for use
 status: experimental
 
-description: # Details about the detection intensions of the rule.
+description: # Details about the detection intentions of the rule.
 author: # Who wrote the rule.
 date: # When was the rule written. YYYY/MM/DD or YYYY-MM-DD
 modified: # When was it updated.
