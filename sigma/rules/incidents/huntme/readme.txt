@@ -1,0 +1,1 @@
+Created as part of THM Sigma detection rule practice for "HUNTME" ransomware scenario (https://tryhackme.com/r/room/sighunt)
